@@ -1,0 +1,1270 @@
+2018-06-09 15:47:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DELETE *[*] FROM USUARIO"; expected "identifier"; SQL statement:
+DELETE * FROM USUARIO [42001-197]
+2018-06-09 15:48:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "DESPESAS_FKINDEX1"; SQL statement:
+CREATE TABLE DESPESAS (
+  ID_DESPESAS INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  RECEITA_ID_RECEITA INTEGER UNSIGNED NOT NULL,
+  DESCRICAO VARCHAR(255) NOT NULL,
+  VALOR DOUBLE NOT NULL,
+  FORMA_PAGAMENTO VARCHAR(255) NOT NULL,
+  TIPO VARCHAR(255) NOT NULL,
+  DATA_DIA DATE NOT NULL,
+  PRIMARY KEY(ID_DESPESAS, RECEITA_ID_RECEITA),
+  INDEX DESPESAS_FKIndex1(RECEITA_ID_RECEITA),
+  FOREIGN KEY(RECEITA_ID_RECEITA)
+    REFERENCES RECEITA(ID_RECEITA)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+) [50004-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4400)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:4215)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:6662)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:6570)
+	at org.h2.command.Parser.parseCreate(Parser.java:4615)
+	at org.h2.command.Parser.parsePrepared(Parser.java:380)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.executeSQLStatementForExtraction(SQLExecutionHelper.java:856)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.access$500(SQLExecutionHelper.java:86)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper$1Loader.run(SQLExecutionHelper.java:149)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+2018-06-09 15:48:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "CONTA_FKINDEX1"; SQL statement:
+CREATE TABLE CONTA (
+  ID_CONTA INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  USUARIO_ID_USUARIO INTEGER UNSIGNED NOT NULL,
+  RECEITA_ID_RECEITA INTEGER UNSIGNED NOT NULL,
+  DESPESAS_RECEITA_ID_RECEITA INTEGER UNSIGNED NOT NULL,
+  DESPESAS_ID_DESPESAS INTEGER UNSIGNED NOT NULL,
+  CONTA_TIPO VARCHAR(255) NOT NULL,
+  BANCO VARCHAR(255) NOT NULL,
+  NUMERO INTEGER UNSIGNED NOT NULL,
+  SALDO DOUBLE NOT NULL,
+  PRIMARY KEY(ID_CONTA, USUARIO_ID_USUARIO, RECEITA_ID_RECEITA, DESPESAS_RECEITA_ID_RECEITA, DESPESAS_ID_DESPESAS),
+  INDEX CONTA_FKIndex1(USUARIO_ID_USUARIO),
+  INDEX CONTA_FKIndex2(RECEITA_ID_RECEITA),
+  INDEX CONTA_FKIndex3(DESPESAS_ID_DESPESAS, DESPESAS_RECEITA_ID_RECEITA),
+  FOREIGN KEY(USUARIO_ID_USUARIO)
+    REFERENCES USUARIO(ID_USUARIO)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION,
+  FOREIGN KEY(RECEITA_ID_RECEITA)
+    REFERENCES RECEITA(ID_RECEITA)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION,
+  FOREIGN KEY(DESPESAS_ID_DESPESAS, DESPESAS_RECEITA_ID_RECEITA)
+    REFERENCES DESPESAS(ID_DESPESAS, RECEITA_ID_RECEITA)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+) [50004-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4400)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:4215)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:6662)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:6570)
+	at org.h2.command.Parser.parseCreate(Parser.java:4615)
+	at org.h2.command.Parser.parsePrepared(Parser.java:380)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.executeSQLStatementForExtraction(SQLExecutionHelper.java:856)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.access$500(SQLExecutionHelper.java:86)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper$1Loader.run(SQLExecutionHelper.java:149)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+2018-06-09 15:50:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "DESPESAS_FKINDEX1"; SQL statement:
+CREATE TABLE DESPESAS (
+  ID_DESPESAS INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  RECEITA_ID_RECEITA INTEGER UNSIGNED NOT NULL,
+  DESCRICAO VARCHAR(255) NOT NULL,
+  VALOR DOUBLE NOT NULL,
+  FORMA_PAGAMENTO VARCHAR(255) NOT NULL,
+  TIPO VARCHAR(255) NOT NULL,
+  DATA_DIA DATE NOT NULL,
+  PRIMARY KEY(ID_DESPESAS, RECEITA_ID_RECEITA),
+  INDEX DESPESAS_FKIndex1(RECEITA_ID_RECEITA),
+  FOREIGN KEY(RECEITA_ID_RECEITA)
+    REFERENCES RECEITA(ID_RECEITA)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+) [50004-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4400)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:4215)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:6662)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:6570)
+	at org.h2.command.Parser.parseCreate(Parser.java:4615)
+	at org.h2.command.Parser.parsePrepared(Parser.java:380)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.executeSQLStatementForExtraction(SQLExecutionHelper.java:856)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.access$500(SQLExecutionHelper.java:86)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper$1Loader.run(SQLExecutionHelper.java:149)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+2018-06-09 16:07:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE USUARIO (
+  ID_USUARIO INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  USERNAME VARCHAR(255) NOT NULL,
+  EMAIL VARCHAR(255) NOT NULL,
+  SENHA VARCHAR(255) NOT NULL,
+  NOME VARCHAR(255) NOT NULL,
+  SOBRENOME VARCHAR(255) NOT NULL,
+  CPF INTEGER UNSIGNED NOT NULL,
+  RG INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(ID_USUARIO)
+  FOREIGN[*] KEY (ID_CONTA) REFERENCES CONTA(ID_CONTA),
+)"; expected "INDEX, ,, )"; SQL statement:
+CREATE TABLE USUARIO (
+  ID_USUARIO INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  USERNAME VARCHAR(255) NOT NULL,
+  EMAIL VARCHAR(255) NOT NULL,
+  SENHA VARCHAR(255) NOT NULL,
+  NOME VARCHAR(255) NOT NULL,
+  SOBRENOME VARCHAR(255) NOT NULL,
+  CPF INTEGER UNSIGNED NOT NULL,
+  RG INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(ID_USUARIO)
+  FOREIGN KEY (ID_CONTA) REFERENCES CONTA(ID_CONTA),
+) [42001-197]
+2018-06-09 16:08:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE CONTA (
+  ID_CONTA INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  CONTA_TIPO VARCHAR(255) NOT NULL,
+  BANCO VARCHAR(255) NOT NULL,
+  NUMERO INTEGER UNSIGNED NOT NULL,
+  SALDO DOUBLE NOT NULL,
+  PRIMARY KEY(ID_CONTA)
+  FOREIGN[*] KEY (ID_DESPESAS) REFERENCES DESPESAS(ID_DESPESAS),
+  FOREIGN KEY (ID_RECEITA) REFERENCES RECEITA(ID_RECEITA),
+)"; expected "INDEX, ,, )"; SQL statement:
+CREATE TABLE CONTA (
+  ID_CONTA INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  CONTA_TIPO VARCHAR(255) NOT NULL,
+  BANCO VARCHAR(255) NOT NULL,
+  NUMERO INTEGER UNSIGNED NOT NULL,
+  SALDO DOUBLE NOT NULL,
+  PRIMARY KEY(ID_CONTA)
+  FOREIGN KEY (ID_DESPESAS) REFERENCES DESPESAS(ID_DESPESAS),
+  FOREIGN KEY (ID_RECEITA) REFERENCES RECEITA(ID_RECEITA),
+) [42001-197]
+2018-06-09 16:08:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE USUARIO (
+  ID_USUARIO INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  USERNAME VARCHAR(255) NOT NULL,
+  EMAIL VARCHAR(255) NOT NULL,
+  SENHA VARCHAR(255) NOT NULL,
+  NOME VARCHAR(255) NOT NULL,
+  SOBRENOME VARCHAR(255) NOT NULL,
+  CPF INTEGER UNSIGNED NOT NULL,
+  RG INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(ID_USUARIO)
+  FOREIGN[*] KEY (ID_CONTA) REFERENCES CONTA(ID_CONTA),
+)"; expected "INDEX, ,, )"; SQL statement:
+CREATE TABLE USUARIO (
+  ID_USUARIO INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  USERNAME VARCHAR(255) NOT NULL,
+  EMAIL VARCHAR(255) NOT NULL,
+  SENHA VARCHAR(255) NOT NULL,
+  NOME VARCHAR(255) NOT NULL,
+  SOBRENOME VARCHAR(255) NOT NULL,
+  CPF INTEGER UNSIGNED NOT NULL,
+  RG INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(ID_USUARIO)
+  FOREIGN KEY (ID_CONTA) REFERENCES CONTA(ID_CONTA),
+) [42001-197]
+2018-06-09 16:10:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "DESPESAS" not found; SQL statement:
+CREATE TABLE CONTA (
+  ID_CONTA INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  CONTA_TIPO VARCHAR(255) NOT NULL,
+  BANCO VARCHAR(255) NOT NULL,
+  NUMERO INTEGER UNSIGNED NOT NULL,
+  SALDO DOUBLE NOT NULL,
+  PRIMARY KEY(ID_CONTA),
+  FOREIGN KEY (ID_DESPESAS) REFERENCES DESPESAS(ID_DESPESAS),
+  FOREIGN KEY (ID_RECEITA) REFERENCES RECEITA(ID_RECEITA)
+) [42102-197]
+2018-06-09 16:12:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "ID_DESPESAS" not found; SQL statement:
+CREATE TABLE CONTA (
+  ID_CONTA INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  CONTA_TIPO VARCHAR(255) NOT NULL,
+  BANCO VARCHAR(255) NOT NULL,
+  NUMERO INTEGER UNSIGNED NOT NULL,
+  SALDO DOUBLE NOT NULL,
+  PRIMARY KEY(ID_CONTA),
+  FOREIGN KEY (ID_DESPESAS) REFERENCES DESPESAS(ID_DESPESAS),
+  FOREIGN KEY (ID_RECEITA) REFERENCES RECEITA(ID_RECEITA)
+) [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:682)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:74)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:212)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.ddl.CommandWithColumns.createConstraints(CommandWithColumns.java:88)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:122)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.executeSQLStatementForExtraction(SQLExecutionHelper.java:856)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.access$500(SQLExecutionHelper.java:86)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper$1Loader.run(SQLExecutionHelper.java:149)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+2018-06-09 16:12:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CONTA" not found; SQL statement:
+CREATE TABLE USUARIO (
+  ID_USUARIO INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  USERNAME VARCHAR(255) NOT NULL,
+  EMAIL VARCHAR(255) NOT NULL,
+  SENHA VARCHAR(255) NOT NULL,
+  NOME VARCHAR(255) NOT NULL,
+  SOBRENOME VARCHAR(255) NOT NULL,
+  CPF INTEGER UNSIGNED NOT NULL,
+  RG INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(ID_USUARIO),
+  FOREIGN KEY (ID_CONTA) REFERENCES CONTA(ID_CONTA)
+) [42102-197]
+2018-06-09 16:19:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CLIENTE" not found; SQL statement:
+create table TELEFONE (
+  ID_TELEFONE INT NOT NULL AUTO_INCREMENT,
+  NUMERO BIGINT NOT NULL,
+  ID_CLIENTE INT,
+  ID_FORNECEDOR INT,
+  PRIMARY KEY (ID_TELEFONE),
+  FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTE(ID_CLIENTE),
+  FOREIGN KEY (ID_FORNECEDOR) REFERENCES FORNECEDOR(ID_FORNECEDOR)
+) [42102-197]
+2018-06-09 16:21:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CLIENTE" not found; SQL statement:
+create table TELEFONE (
+  ID_TELEFONE INT NOT NULL AUTO_INCREMENT,
+  NUMERO BIGINT NOT NULL,
+  ID_CLIENTE INT,
+  ID_FORNECEDOR INT,
+  PRIMARY KEY (ID_TELEFONE),
+  FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTE(ID_CLIENTE),
+  FOREIGN KEY (ID_FORNECEDOR) REFERENCES FORNECEDOR(ID_FORNECEDOR)
+) [42102-197]
+2018-06-09 16:25:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "DESPESAS" already exists; SQL statement:
+CREATE TABLE DESPESAS (
+  ID_DESPESAS INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  DESCRICAO VARCHAR(255) NOT NULL,
+  VALOR DOUBLE NOT NULL,
+  FORMA_PAGAMENTO VARCHAR(255) NOT NULL,
+  TIPO VARCHAR(255) NOT NULL,
+  DATA_DIA DATE NOT NULL,
+  PRIMARY KEY(ID_DESPESAS)
+) [42101-197]
+2018-06-09 16:25:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "ID_DESPESAS" not found; SQL statement:
+CREATE TABLE CONTA (
+  ID_CONTA INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  CONTA_TIPO VARCHAR(255) NOT NULL,
+  BANCO VARCHAR(255) NOT NULL,
+  NUMERO INTEGER UNSIGNED NOT NULL,
+  SALDO DOUBLE NOT NULL,
+  PRIMARY KEY(ID_CONTA),
+  FOREIGN KEY (ID_DESPESAS) REFERENCES DESPESAS(ID_DESPESAS),
+  FOREIGN KEY (ID_RECEITA) REFERENCES RECEITA(ID_RECEITA)
+) [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:682)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:74)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:212)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.ddl.CommandWithColumns.createConstraints(CommandWithColumns.java:88)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:122)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.executeSQLStatementForExtraction(SQLExecutionHelper.java:856)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.access$500(SQLExecutionHelper.java:86)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper$1Loader.run(SQLExecutionHelper.java:149)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+2018-06-09 16:27:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "ID_DESPESAS" not found; SQL statement:
+CREATE TABLE CONTA (
+  ID_CONTA INTEGER NOT NULL AUTO_INCREMENT,
+  CONTA_TIPO VARCHAR(255) NOT NULL,
+  BANCO VARCHAR(255) NOT NULL,
+  NUMERO INTEGER UNSIGNED NOT NULL,
+  SALDO DOUBLE NOT NULL,
+  PRIMARY KEY(ID_CONTA),
+  FOREIGN KEY (ID_DESPESAS) REFERENCES DESPESAS(ID_DESPESAS),
+  FOREIGN KEY (ID_RECEITA) REFERENCES RECEITA(ID_RECEITA)
+) [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:682)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:74)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:212)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.ddl.CommandWithColumns.createConstraints(CommandWithColumns.java:88)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:122)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.executeSQLStatementForExtraction(SQLExecutionHelper.java:856)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.access$500(SQLExecutionHelper.java:86)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper$1Loader.run(SQLExecutionHelper.java:149)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+2018-06-09 16:31:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "DESPESAS" not found; SQL statement:
+CREATE TABLE CONTA (
+  ID_CONTA INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  CONTA_TIPO VARCHAR(255) NOT NULL,
+  BANCO VARCHAR(255) NOT NULL,
+  NUMERO INTEGER UNSIGNED NOT NULL,
+  SALDO DOUBLE NOT NULL,
+  PRIMARY KEY(ID_CONTA),
+  FOREIGN KEY (ID_DESPESAS) REFERENCES DESPESAS(ID_DESPESAS),
+  FOREIGN KEY (ID_RECEITA) REFERENCES RECEITA(ID_RECEITA)
+) [42102-197]
+2018-06-09 16:47:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "DESPESAS_FKINDEX1"; SQL statement:
+CREATE TABLE DESPESAS (
+  ID_DESPESAS INT NOT NULL AUTO_INCREMENT,
+  RECEITA_ID_RECEITA INT NOT NULL,
+  DESCRICAO VARCHAR(255) NOT NULL,
+  VALOR DOUBLE NOT NULL,
+  FORMA_PAGAMENTO VARCHAR(255) NOT NULL,
+  TIPO VARCHAR(255) NOT NULL,
+  DATA_DIA DATE NOT NULL,
+  PRIMARY KEY(ID_DESPESAS),
+  INDEX DESPESAS_FKIndex1(RECEITA_ID_RECEITA)
+) [50004-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4400)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:4215)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:6662)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:6570)
+	at org.h2.command.Parser.parseCreate(Parser.java:4615)
+	at org.h2.command.Parser.parsePrepared(Parser.java:380)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.executeSQLStatementForExtraction(SQLExecutionHelper.java:856)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.access$500(SQLExecutionHelper.java:86)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper$1Loader.run(SQLExecutionHelper.java:149)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+2018-06-09 16:48:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "ID_RECEITA" not found; SQL statement:
+CREATE TABLE DESPESAS (
+  ID_DESPESAS INT NOT NULL AUTO_INCREMENT,
+  RECEITA_ID_RECEITA INT NOT NULL,
+  DESCRICAO VARCHAR(255) NOT NULL,
+  VALOR DOUBLE NOT NULL,
+  FORMA_PAGAMENTO VARCHAR(255) NOT NULL,
+  TIPO VARCHAR(255) NOT NULL,
+  DATA_DIA DATE NOT NULL,
+  PRIMARY KEY(ID_DESPESAS),
+  FOREIGN KEY (ID_RECEITA) REFERENCES RECEITA(ID_RECEITA)
+) [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:682)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:74)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:212)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.ddl.CommandWithColumns.createConstraints(CommandWithColumns.java:88)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:122)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.executeSQLStatementForExtraction(SQLExecutionHelper.java:856)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper.access$500(SQLExecutionHelper.java:86)
+	at org.netbeans.modules.db.dataview.output.SQLExecutionHelper$1Loader.run(SQLExecutionHelper.java:149)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+2018-06-09 17:34:34 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.getConnection(ConexaoDB.java:22)
+	at br.com.invistafacil.repositorio.ConexaoDB.inserirUsuario(ConexaoDB.java:31)
+	at br.com.invistafacil.repositorio.ConexaoDB.main(ConexaoDB.java:64)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 27 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 21 more
+2018-06-10 19:32:59 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.conexao(ConexaoDB.java:37)
+	at br.com.invistafacil.principal.Principal.<init>(Principal.java:37)
+	at br.com.invistafacil.principal.Principal$18.run(Principal.java:891)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 41 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 35 more
+2018-06-10 22:34:36 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.conexao(ConexaoDB.java:37)
+	at br.com.invistafacil.principal.Principal.<init>(Principal.java:37)
+	at br.com.invistafacil.principal.Principal$18.run(Principal.java:891)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 41 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 35 more
+2018-06-11 01:38:17 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:39:13 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:39:18 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:40:15 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:40:17 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:42:09 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:46:46 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:47:26 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:53:50 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:53:52 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:53:55 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:54:07 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:54:53 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:54:57 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:55:58 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:56:00 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:56:03 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:56:09 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:56:18 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 01:57:12 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:10:32 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:11:12 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:18:30 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:19:48 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:22:38 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:28:10 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:31:59 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:32:01 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:34:02 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:34:09 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:34:18 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:36:06 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:38:57 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 12:41:44 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 13:04:21 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 13:04:51 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 13:34:35 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 13:34:43 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 13:35:53 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 15:42:54 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM USUARIO where EMAIL and SENHA[*]'"; SQL statement:
+SELECT * FROM USUARIO where EMAIL and SENHA' [42000-197]
+2018-06-11 15:43:16 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM USUARIO where EMAIL and SENHA[*]'"; SQL statement:
+SELECT * FROM USUARIO where EMAIL and SENHA' [42000-197]
+2018-06-11 15:44:39 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "georgealanrufo@gmail.com"; SQL statement:
+SELECT * FROM USUARIO where EMAIL and SENHA [22018-197]
+2018-06-11 15:45:31 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "georgealanrufo@gmail.com"; SQL statement:
+SELECT * FROM USUARIO where EMAIL and SENHA [22018-197]
+2018-06-11 15:46:11 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "georgealanrufo@gmail.com"; SQL statement:
+SELECT * FROM USUARIO where EMAIL and SENHA [22018-197]
+2018-06-11 15:46:51 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "georgealanrufo@gmail.com"; SQL statement:
+SELECT * FROM USUARIO where EMAIL [22018-197]
+2018-06-11 15:47:48 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "georgealanrufo@gmail.com"; SQL statement:
+SELECT * FROM USUARIO where EMAIL [22018-197]
+2018-06-11 15:48:09 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "georgealanrufo@gmail.com"; SQL statement:
+SELECT * FROM USUARIO where EMAIL [22018-197]
+2018-06-11 16:01:44 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 16:07:24 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 16:07:30 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 16:07:34 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 16:07:50 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 18:06:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 18:06:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 18:06:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 18:06:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 19:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 19:41:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-11 23:31:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-11 23:51:39 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.<init>(ConexaoDB.java:38)
+	at br.com.invistafacil.repositorio.ConexaoDB.getInstancy(ConexaoDB.java:46)
+	at br.com.invistafacil.principal.Principal.<init>(Principal.java:36)
+	at br.com.invistafacil.principal.Principal$18.run(Principal.java:898)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 42 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 36 more
+2018-06-12 13:04:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-12 13:04:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-12 13:32:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-12 13:39:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-12 19:34:30 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.<init>(ConexaoDB.java:38)
+	at br.com.invistafacil.repositorio.ConexaoDB.getInstancy(ConexaoDB.java:46)
+	at br.com.invistafacil.principal.Principal.<init>(Principal.java:36)
+	at br.com.invistafacil.principal.Principal$18.run(Principal.java:898)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 42 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 36 more
+2018-06-12 19:34:39 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.<init>(ConexaoDB.java:38)
+	at br.com.invistafacil.repositorio.ConexaoDB.getInstancy(ConexaoDB.java:46)
+	at br.com.invistafacil.principal.Principal.<init>(Principal.java:36)
+	at br.com.invistafacil.principal.Principal$18.run(Principal.java:898)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 42 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 36 more
+2018-06-12 19:34:48 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.netbeans.modules.db.explorer.DbDriverManager.getConnection(DbDriverManager.java:131)
+	at org.netbeans.modules.db.explorer.DatabaseConnection.doConnect(DatabaseConnection.java:911)
+	at org.netbeans.modules.db.explorer.DatabaseConnection.access$200(DatabaseConnection.java:103)
+	at org.netbeans.modules.db.explorer.DatabaseConnection$3.run(DatabaseConnection.java:976)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 15 more
+2018-06-12 21:35:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-12 21:36:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-12 22:50:51 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.<init>(ConexaoDB.java:38)
+	at br.com.invistafacil.repositorio.ConexaoDB.getInstancy(ConexaoDB.java:46)
+	at br.com.invistafacil.principal.Principal.<init>(Principal.java:36)
+	at br.com.invistafacil.principal.Principal$18.run(Principal.java:898)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 42 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 36 more
+2018-06-12 22:50:59 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.<init>(ConexaoDB.java:38)
+	at br.com.invistafacil.repositorio.ConexaoDB.getInstancy(ConexaoDB.java:46)
+	at br.com.invistafacil.principal.Principal.<init>(Principal.java:36)
+	at br.com.invistafacil.principal.Principal$18.run(Principal.java:898)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 42 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 36 more
+2018-06-12 22:51:09 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.<init>(ConexaoDB.java:38)
+	at br.com.invistafacil.repositorio.ConexaoDB.getInstancy(ConexaoDB.java:46)
+	at br.com.invistafacil.principal.Principal.<init>(Principal.java:36)
+	at br.com.invistafacil.principal.Principal$18.run(Principal.java:898)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 42 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 36 more
+2018-06-12 22:51:18 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.netbeans.modules.db.explorer.DbDriverManager.getConnection(DbDriverManager.java:131)
+	at org.netbeans.modules.db.explorer.DatabaseConnection.doConnect(DatabaseConnection.java:911)
+	at org.netbeans.modules.db.explorer.DatabaseConnection.access$200(DatabaseConnection.java:103)
+	at org.netbeans.modules.db.explorer.DatabaseConnection$3.run(DatabaseConnection.java:976)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 30 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 24 more
+2018-06-12 22:51:25 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.netbeans.modules.db.explorer.DbDriverManager.getConnection(DbDriverManager.java:131)
+	at org.netbeans.modules.db.explorer.DatabaseConnection.doConnect(DatabaseConnection.java:911)
+	at org.netbeans.modules.db.explorer.DatabaseConnection.access$200(DatabaseConnection.java:103)
+	at org.netbeans.modules.db.explorer.DatabaseConnection$3.run(DatabaseConnection.java:976)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 30 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/internet/Documents/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 24 more
+2018-06-13 15:36:04 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at br.com.invistafacil.repositorio.ConexaoDB.<init>(ConexaoDB.java:38)
+	at br.com.invistafacil.repositorio.ConexaoDB.getInstancy(ConexaoDB.java:46)
+	at br.com.invistafacil.business.PerfilUserBusiness.<init>(PerfilUserBusiness.java:24)
+	at br.com.invistafacil.test.PerfilUserMOK.main(PerfilUserMOK.java:33)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 28 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/Documentos/NetBeansProjects/Invistafacil/repositorios/invistafacilDB.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 22 more
+2018-06-13 15:36:27 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.netbeans.modules.db.explorer.DbDriverManager.getConnection(DbDriverManager.java:131)
+	at org.netbeans.modules.db.explorer.DatabaseConnection.doConnect(DatabaseConnection.java:923)
+	at org.netbeans.modules.db.explorer.DatabaseConnection.access$200(DatabaseConnection.java:103)
+	at org.netbeans.modules.db.explorer.DatabaseConnection$3.run(DatabaseConnection.java:988)
+	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1443)
+	at org.netbeans.modules.openide.util.GlobalLookup.execute(GlobalLookup.java:68)
+	at org.openide.util.lookup.Lookups.executeWith(Lookups.java:303)
+	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:2058)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 15 more
+2018-06-13 16:32:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 16:32:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 16:32:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 16:34:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 16:39:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 16:39:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 17:13:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 21:44:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 21:44:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 22:13:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 22:13:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 22:16:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 22:18:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 22:25:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 22:40:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-13 22:45:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-14 09:43:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-14 09:43:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-14 09:43:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-14 09:44:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-14 09:45:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-14 09:45:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-14 09:52:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-14 09:53:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-14 12:13:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-06-14 12:14:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-14 12:14:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-14 12:15:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-06-14 12:21:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "DESPESA" not found; SQL statement:
+SELECT * FROM DESPESA [42102-197]
+2018-06-14 14:43:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
